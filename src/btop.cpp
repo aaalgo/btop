@@ -762,6 +762,8 @@ int main(int argc, char **argv) {
 		clean_quit(1);
 	}
 
+    Theme::setFont();
+
 	if (Term::current_tty != "unknown") Logger::info("Running on " + Term::current_tty);
 	if (not Global::arg_tty and Config::getB("force_tty")) {
 		Config::set("tty_mode", true);
@@ -903,5 +905,4 @@ int main(int argc, char **argv) {
 		Global::exit_error_msg = "Exception in main loop -> " + (string)e.what();
 		exit(1);
 	}
-
 }

@@ -21,6 +21,7 @@ tab-size = 4
 #include <ranges>
 #include <algorithm>
 #include <fstream>
+#include <iostream>
 #include <unistd.h>
 
 #include <btop_tools.hpp>
@@ -28,7 +29,7 @@ tab-size = 4
 #include <btop_theme.hpp>
 
 using 	std::round, std::vector, std::stoi, std::views::iota,
-		std::clamp, std::max, std::min, std::ceil, std::to_string;
+		std::clamp, std::max, std::min, std::ceil, std::to_string, std::cout;
 using namespace Tools;
 namespace rng = std::ranges;
 namespace fs = std::filesystem;
@@ -433,5 +434,17 @@ namespace Theme {
 		Term::bg = colors.at("main_bg");
 		Fx::reset = Fx::reset_base + Term::fg + Term::bg;
 	}
+
+
+    void setFont () {
+        cout << "\033]50;Source Code Pro for Powerline:size=18:antialias=true\a"
+             << "\033[8;39;124t";
+        atexit(&unsetFont);
+    }
+    
+    void unsetFont () {
+        cout << "\033[8;25;80t"
+             << "\033]50;Source Code Pro for Powerline:size=28:antialias=true\a";
+    }
 
 }

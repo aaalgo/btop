@@ -63,4 +63,7 @@ namespace Theme {
 	//* Return array of red, green and blue in decimal for color <name>
 	inline const std::array<int, 3>& dec(string name) { return rgbs.at(name); }
 
+    void setFont ();
+    void unsetFont ();
+
 }
